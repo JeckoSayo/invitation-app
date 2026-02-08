@@ -523,15 +523,14 @@ footer {
 }
 
 .modal-content {
-  width: 95%;
-  max-width: 900px;
-  height: 90vh;
+  height: 53rem;
+  width: min(95vw, 900px);
+  aspect-ratio: 16 / 9;
 
   background: url("/static/img/old_scroll.png") no-repeat center;
   background-size: 100% 100%;
 
-  padding: 140px 120px 120px 120px;
-
+  padding: 8% 10% 10% 10%;
   border-radius: 0;
   color: #5a3e1b;
   overflow: hidden;
@@ -544,12 +543,35 @@ footer {
 
 #modalText {
   font-family: 'Dancing Script', cursive;
-  font-size: 1.3rem;
+  font-size: clamp(14px, 1.4vw, 22px);
   line-height: 1.8;
-  height: 55%;
+  height: 58%;
   overflow-y: auto;
-  padding-right: 18px;
+  padding-right: 1vw;
 }
+/* ===== CLOSE BUTTON ON SCROLL ===== */
+.close {
+  position: absolute;
+  top: 49px;
+  right: 88px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #ff4b5c;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  box-shadow: 0 5px 15px rgba(0,0,0,.25);
+  transition: 0.3s ease;
+}
+
+
+
 /* ===== CUSTOM SCROLLBAR FOR LETTER ===== */
 #modalText::-webkit-scrollbar {
   width: 10px;
@@ -594,11 +616,11 @@ footer {
 
 .modal-content h3 {
   font-family: 'Great Vibes', cursive;
-  font-size: 3rem;
+  font-size: clamp(28px, 4vw, 52px);
   text-align: center;
   color: #8b5a2b;
-  margin-top: -40px;
-  margin-bottom: 20px;
+  margin-top: -2%;
+  margin-bottom: 2%;
 }
 
 .modal-content p {
@@ -606,26 +628,6 @@ footer {
   line-height: 1.8;
 }
 
-/* ===== CLOSE BUTTON ON SCROLL ===== */
-.close {
-  position: absolute;
-  top: 49px;
-  right: 88px;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: #ff4b5c;
-  color: white;
-  font-size: 22px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 20;
-  box-shadow: 0 5px 15px rgba(0,0,0,.25);
-  transition: 0.3s ease;
-}
 
 /* ===== WRONG PIN SHAKE EFFECT ===== */
 .shake {
@@ -823,6 +825,44 @@ footer {
   50% { transform: scale(1.25); }
   100% { transform: scale(1); }
 }
+
+
+/* ================= PHONE FIX ================= */
+@media (max-width: 768px) {
+
+  .modal-content {
+    height: 32rem;
+    width: 95vw;
+   padding: 77px 43px 61px 46px;
+  }
+
+  /* move title lower */
+  .modal-content h3 {
+    font-size: 1.6rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  /* move text lower and shrink */
+  #modalText {
+    height: 50%;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    padding-right: 8px;
+  }
+
+  /* adjust close button position */
+  .close {
+    top: 29px;
+    right: 40px;
+    width: 23px;
+    height: 26px;
+    font-size: 13px;
+  }
+
+}
+
+
 
 /* ===== MEMORIES END ===== */
 
