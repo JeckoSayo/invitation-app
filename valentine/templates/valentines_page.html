@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+My Forever Valentine ❤️
+{% endblock %}
+
+
+{% block content %}
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="flower">
+    <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+    <div class="petal"></div><div class="petal"></div>
+    <div class="center"></div>
+  </div>
+  <p>Loading our love… ❤️</p>
+</div>
+
+<audio id="music" loop>
+  <source src="{% static 'audio/Lullaby.mp3' %}">
+</audio>
+
+<!-- HERO -->
+<div class="hero-wrapper">
+  <section id="hero">
+    <h1>My Forever Valentine ❤️</h1>
+    <h2>For <span class="name">Beatrix Sebastian</span></h2>
+    <button class="btn" id="startBtn">Begin Our Story 💌</button>
+  </section>
+
+  <section class="hero-photo">
+    <div class="photo-wrap">
+      <img src="{% static 'img/bea.png' %} " id="heroImg">
+    </div>
+  </section>
+</div>
+
+<!-- INVITATION -->
+<div id="invitation" class="locked">
+ 
+
+<section id="letter-section">
+  <h2>A Letter From My Heart 💕</h2>
+
+   <!-- LETTER MODAL -->
+  <div id="letterModal" class="modal-letter">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+
+      <h3>My Love 🧸</h3>
+      <p id="modalText"></p>
+    </div>
+  </div>
+
+  <!-- PIN MODAL -->
+<div id="pinModal" class="modal-letter">
+  <div class="modal-content">
+    <h3>Enter the Code 💗</h3>
+
+    <input id="pinInput" type="password" maxlength="4" inputmode="numeric" placeholder="****"
+      style="font-size:2rem; text-align:center; letter-spacing:10px; padding:10px; width:150px; border-radius:10px; border:2px solid #ff4b5c;">
+
+    <br><br>
+    <button id="unlockBtn" style="padding:10px 25px; border:none; background:#ff4b5c; color:white; border-radius:20px; font-size:1rem;">
+      Unlock
+    </button>
+  </div>
+</div>
+
+  <div class="wrapper envelope-scroll">
+    <div class="lid one"></div>
+    <div class="lid two"></div>
+    <div class="envelope"></div>
+    <div class="seal lock" id="lockSeal">💗</div>
+    <div class="letter">
+      <p>
+        My love,<br><br>
+        The quicasddasl asdjhasjkd ajksdhaksjd 
+        <br><br>
+        No sadkjasl asdkjahjkd asjkhdhkja ahjsbdas hasd dasdasd. 💗
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<section class="love-timer">
+  <h2>Since the Day We Met 💞</h2>
+
+  <div class="love-timer-content">
+
+    <div class="love-photo">
+      <img src="{% static 'img/bub_kiss.png' %}">
+    </div>
+
+
+    <div class="timer-card">
+      <div class="time-row">
+        <span class="time-number" id="years">0</span>
+        <span class="time-label">Years</span>
+      </div>
+      <div class="time-row">
+        <span class="time-number" id="months">0</span>
+        <span class="time-label">Months</span>
+      </div>
+      <div class="time-row">
+        <span class="time-number" id="days">0</span>
+        <span class="time-label">Days</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="timer-caption">and every moment still feels special ❤️</p>
+</section>
+
+
+
+
+<section class="memories-section">
+  <h2 class="memories-title">Our Memories ❤️</h2>
+
+  <div class="timeline">
+
+    <div class="memory card p1">
+      <span class="dot"></span>
+      <img src="{% static 'img/1.png' %}">
+      <div class="content">
+        <h3>Our First Message</h3>
+        <p>It started with a simple hello… and became everything.</p>
+      </div>
+    </div>
+
+    <div class="memory card p2">
+      <span class="dot"></span>
+      <img src="{% static 'img/2.jpg' %}">
+      <div class="content">
+        <h3>Our First Date</h3>
+        <p>I was nervous, but I knew I wanted more moments like this.</p>
+      </div>
+    </div>
+
+    <div class="memory card p3">
+      <span class="dot"></span>
+      <img src="{% static 'img/1.png' %}">
+      <div class="content">
+        <h3>My Favorite Moment</h3>
+        <p>This day lives in my heart forever.</p>
+      </div>
+    </div>
+
+    <div class="memory card p4">
+      <span class="dot"></span>
+      <img src="{% static 'img/1.png' %}">
+      <div class="content">
+        <h3>Today</h3>
+        <p>Still choosing you. Always.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="valentine-section" id="valentineSection">
+  <h2 class="valentine-question" id="typingSentence"></h2>
+
+  <div class="sentence-box" id="choicesBox">
+    <span class="choice good" data-word="with you 💗">with you</span>
+    <span class="choice tease" data-word="on my phone 📱">on my phone</span>
+    <span class="choice tease" data-word="anywhere else 🙈">anywhere else</span>
+  </div>
+
+  <div class="sentence-result" id="sentenceResult"></div>
+
+  <div class="final-question" id="finalQuestion">
+      <p class="question-text">
+        Will you be my Valentine, <span id="herName"></span>? 💌
+      </p>
+
+    <div class="valentine-buttons">
+      <button class="val-btn yes-btn" id="yesBtn">Yes 💖</button>
+      <button class="val-btn no-btn" id="noBtn">No 🙈</button>
+    </div>
+  </div>
+  <div class="yes-animation" id="yesAnimation">
+    💖 YES! 💖<br>
+  </div>
+
+
+</section>
+
+  
+</div>
+
+<footer>
+  Made with ❤️ by Jecko <br>
+  Valentine’s Day 2026
+</footer>
+
+
+{% endblock %}
