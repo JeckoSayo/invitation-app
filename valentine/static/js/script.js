@@ -394,56 +394,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ================== SCROLLREVEAL (DELAYED INIT) ==================
   function initScrollReveal() {
-    ScrollReveal({
-      reset: true,
-      distance: '60px',
-      duration: 2500,
-      delay: 100,
-      easing: 'ease-out'
-    });
 
-    ScrollReveal().clean(
-      '#hero, .photo-wrap, .love-timer h2, .timer-card, .timer-caption, .memories-title, .memory'
-    );
+  const isMobile = window.innerWidth <= 768;
 
-    ScrollReveal().reveal('#hero', {
-      delay: 500,
-      origin: 'left'
-    });
+  const sr = ScrollReveal({
+    reset: !isMobile,
+    distance: '60px',
+    duration: 2500,
+    delay: 100,
+    easing: 'ease-out'
+  });
 
-    ScrollReveal().reveal('.photo-wrap', {
-      delay: 600,
-      origin: 'right'
-    });
+  sr.clean(
+    '#hero, .photo-wrap, .love-timer h2, .timer-card, .timer-caption, .memories-title, .memory'
+  );
 
-    // 💞 LOVE TIMER REVEAL (gentle + emotional)
-    ScrollReveal().reveal('.love-timer h2', {
-      origin: 'top',
-      delay: 200
-    });
+  sr.reveal('#hero', {
+    delay: 500,
+    origin: 'left'
+  });
 
-    ScrollReveal().reveal('.timer-card, .love-photo', {
-      origin: 'bottom',
-      delay: 400,
-      distance: '40px'
-    });
+  sr.reveal('.photo-wrap', {
+    delay: 600,
+    origin: 'right'
+  });
 
+  sr.reveal('.love-timer h2', {
+    origin: 'top',
+    delay: 200
+  });
 
-    ScrollReveal().reveal('.timer-caption', {
-      origin: 'bottom',
-      delay: 600,
-      distance: '20px'
-    });
+  sr.reveal('.timer-card, .love-photo', {
+    origin: 'bottom',
+    delay: 400,
+    distance: '40px'
+  });
 
-    ScrollReveal().reveal('.memories-title', {
-      origin: 'top'
-    });
+  sr.reveal('.timer-caption', {
+    origin: 'bottom',
+    delay: 600,
+    distance: '20px'
+  });
 
-    ScrollReveal().reveal('.memory', {
-      origin: 'bottom',
-      interval: 300
-    });
-  }
+  sr.reveal('.memories-title', {
+    origin: 'top'
+  });
+
+  sr.reveal('.memory', {
+    origin: 'bottom',
+    interval: 300
+  });
+}
+
 
   // ================== SAFETY SYNC ==================
   window.addEventListener('resize', () => {
