@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ================== START BUTTON ==================
   el.startBtn.addEventListener("click", () => {
+    el.startBtn.disabled = true;
+    el.startBtn.innerText = "Opened 💌";
     popImage();
     showInvitation();
     fadeInMusic();
@@ -202,12 +204,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ================== AUTO CLOSE ON SCROLL ==================
-  window.addEventListener("scroll", () => {
-    if (modal.classList.contains("show")) {
-      modal.classList.remove("show");
-      closeEnvelope();
-    }
-  });
+  // window.addEventListener("scroll", () => {
+  //   if (modal.classList.contains("show")) {
+  //     modal.classList.remove("show");
+  //     closeEnvelope();
+  //   }
+  // });
 
   // ================== LOADER ==================
   window.addEventListener("load", () => {

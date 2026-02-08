@@ -251,6 +251,18 @@ h2 {
   transform: scale(1.08);
 }
 
+/* Disabled button style */
+button:disabled,
+#startBtn:disabled {
+  background: #f56f7c !important; /* gray */
+  color: #fffcfc !important;
+  cursor: not-allowed;
+  opacity: 0.7;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+
 .letter,
 p {
   font-family: 'Poppins', sans-serif;
@@ -502,6 +514,7 @@ footer {
   pointer-events: none;
   transition: 0.3s ease;
   z-index: 10;
+  padding: 40px 20px;
 }
 
 .modal-letter.show {
@@ -510,22 +523,67 @@ footer {
 }
 
 .modal-content {
-  width: 85%;
-  max-width: 500px;
-  max-height: 80%;
-  background: #fff;
-  border-radius: 20px;
-  padding: 30px;
-  color: #333;
-  overflow-y: auto;
-  text-align: center;
+  width: 95%;
+  max-width: 900px;
+  height: 90vh;
+
+  background: url("/static/img/old_scroll.png") no-repeat center;
+  background-size: 100% 100%;
+
+  padding: 140px 120px 120px 120px;
+
+  border-radius: 0;
+  color: #5a3e1b;
+  overflow: hidden;
+  text-align: left;
+
   transform: scale(0.9);
   opacity: 0;
   transition: 0.3s ease;
 }
+
+#modalText {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.3rem;
+  line-height: 1.8;
+  height: 55%;
+  overflow-y: auto;
+  padding-right: 18px;
+}
+/* ===== CUSTOM SCROLLBAR FOR LETTER ===== */
+#modalText::-webkit-scrollbar {
+  width: 10px;
+}
+
+#modalText::-webkit-scrollbar-track {
+  background: rgba(160, 120, 70, 0.15);
+  border-radius: 20px;
+}
+
+#modalText::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to bottom,
+    #c79a5b,
+    #a87432,
+    #8b5a2b
+  );
+  border-radius: 20px;
+  border: 2px solid rgba(255,255,255,0.4);
+}
+
+#modalText::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    to bottom,
+    #d9ad6c,
+    #b07a3a,
+    #8b5a2b
+  );
+}
+
+
 /* animate in */
 .modal-letter.show .modal-content {
-  transform: scale(1);
+  transform: scale(1) translateY(-10px);
   opacity: 1;
 }
 
@@ -536,9 +594,11 @@ footer {
 
 .modal-content h3 {
   font-family: 'Great Vibes', cursive;
-  font-size: 2.5rem;
+  font-size: 3rem;
+  text-align: center;
+  color: #8b5a2b;
+  margin-top: -40px;
   margin-bottom: 20px;
-  color: #ff4b5c;
 }
 
 .modal-content p {
@@ -546,13 +606,25 @@ footer {
   line-height: 1.8;
 }
 
+/* ===== CLOSE BUTTON ON SCROLL ===== */
 .close {
   position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 26px;
+  top: 49px;
+  right: 88px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #ff4b5c;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  color: #ff4b5c;
+  z-index: 20;
+  box-shadow: 0 5px 15px rgba(0,0,0,.25);
+  transition: 0.3s ease;
 }
 
 /* ===== WRONG PIN SHAKE EFFECT ===== */
