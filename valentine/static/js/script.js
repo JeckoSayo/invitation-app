@@ -69,8 +69,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ================== BACKGROUND EFFECTS ==================
-  setInterval(() => spawn("heart", "❤️", 10000), 400);
-  setInterval(() => spawn("falling-petal", "🌸", 12000), 900);
+  setInterval(() => spawn("heart", "❤️", 12000), 1500);
+  setInterval(() => spawn("falling-petal", "🌸", 12000), 1700);
 
   function spawn(cls, emoji, ttl) {
     const el = document.createElement("div");
