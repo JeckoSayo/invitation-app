@@ -286,6 +286,40 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ------------------ CHOICE INTERACTION ------------------
+
+  const choicesBox = document.getElementById("choicesBox");
+
+  function shuffleChoices() {
+    const choicesArray = Array.from(choicesBox.children);
+
+    // Fisher–Yates shuffle (real random shuffle)
+    for (let i = choicesArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [choicesArray[i], choicesArray[j]] = [choicesArray[j], choicesArray[i]];
+    }
+
+    // re-append in new order
+    choicesArray.forEach(choice => choicesBox.appendChild(choice));
+  }
+
+
+  let wrongAttempts = 0;
+
+  const wrongMessages = [
+    "Hmm… try again 😌",
+    "Still wrong… 😢",
+    "You’re breaking my heart 😭",
+    "Be serious 😣",
+    "I thought you knew me 😞",
+    "Wow… unbelievable 😮‍💨",
+    "Are you doing this on purpose? 😑",
+    "This is getting suspicious 😤",
+    "Okay now I’m offended 😠",
+    "Last chance… 😳",
+    "I give up 💀"
+  ];
+
+
   choices.forEach(choice => {
 
     choice.addEventListener("mouseenter", () => {
@@ -301,20 +335,26 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     choice.addEventListener("click", () => {
-
-      // ❌ Tease answers
+      // WRONG ANSWER CLICK
       if (choice.classList.contains("tease")) {
-        choice.classList.add("clicked");
-        sentenceResult.textContent = "Hmm… try again 😌";
+        wrongAttempts++;
+
+        // pick message based on tries (progressive drama 😆)
+        const msgIndex = Math.min(wrongAttempts - 1, wrongMessages.length - 1);
+        const message = wrongMessages[msgIndex];
+
+        sentenceResult.textContent = message;
         sentenceResult.style.opacity = 1;
 
-        setTimeout(() => {
-          choice.classList.remove("clicked");
-        }, 400);
+        choice.classList.add("clicked");
+        setTimeout(() => choice.classList.remove("clicked"), 400);
+
+        setTimeout(shuffleChoices, 300);
+
         return;
       }
 
-      // ✅ Correct answer
+      // Correct answer
       sentenceResult.textContent = `My favorite place is ${choice.dataset.word}`;
       sentenceResult.style.opacity = 1;
 
@@ -331,18 +371,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // ------------------ NO BUTTON (PLAYFUL ESCAPE) ------------------
-  noBtn.addEventListener("mouseenter", () => {
-    const x = Math.random() * 120 - 60;
-    const y = Math.random() * 80 - 40;
+  // ------------------ NO BUTTON (IMPOSSIBLE MODE 😈) ------------------
 
-    noBtn.style.transform = `translate(${x}px, ${y}px)`;
-  });
+let escapeCount = 0;
 
-  noBtn.addEventListener("click", () => {
-    noBtn.textContent = "Nice try 😜";
-  });
+noBtn.addEventListener("mouseenter", escapeNoButton);
+noBtn.addEventListener("touchstart", escapeNoButton);
+noBtn.addEventListener("pointerdown", e => {
+  e.preventDefault(); // prevent click before escape
+  escapeNoButton();
+});
 
+function escapeNoButton() {
+  const container = document.getElementById("valentineSection");
+  const rect = container.getBoundingClientRect();
+
+  // small playful movement range (so it never disappears)
+  const moveX = (Math.random() - 0.5) * rect.width * 0.4;
+  const moveY = (Math.random() - 0.5) * rect.height * 0.3;
+
+  noBtn.style.transform = `translate(${moveX}px, ${moveY}px)`;
+
+  escapeCount++;
+
+  if (escapeCount === 3) noBtn.textContent = "Naku po 🙈";
+  if (escapeCount === 6) noBtn.textContent = "Stop chasing me 😭";
+  if (escapeCount === 9) noBtn.textContent = "YES na kasi 💖";
+}
   // ------------------ YES BUTTON (ROMANTIC, CLEAN) ------------------
   let yesLocked = false;
 
@@ -381,12 +436,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // ================== SAFETY SYNC ==================
-  window.addEventListener('resize', () => {
-    if (window.ScrollReveal) ScrollReveal().sync();
-  });
-
-
   // ================== LOVE TIMER ==================
   const startDate = new Date(2025, 6, 27);
 
@@ -422,32 +471,33 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // ================== LOADER TYPING EFFECT ==================
-const loaderMessages = [
-  "Preparing our little love story… 💖",
-  "Gathering our sweetest memories… 🌸",
-  "Adding a sprinkle of magic… ✨",
-  "Almost ready for you… 💕"
-];
+document.addEventListener("DOMContentLoaded", () => {
+  const loaderMessages = [
+    "Preparing our little love story… 💖",
+    "Gathering our sweetest memories… 🌸",
+    "Adding a sprinkle of magic… ✨",
+    "Almost ready for you… 💕"
+  ];
 
-const loaderTextEl = document.getElementById("loaderText");
+  const loaderTextEl = document.getElementById("loaderText");
 
-// 💖 pick ONE random message per page load
-const randomMessage =
-  loaderMessages[Math.floor(Math.random() * loaderMessages.length)];
+  // 💖 pick ONE random message per page load
+  const randomMessage =
+    loaderMessages[Math.floor(Math.random() * loaderMessages.length)];
 
-let charIndex = 0;
+  let charIndex = 0;
 
-function typeLoaderText() {
-  if (charIndex < randomMessage.length) {
-    loaderTextEl.textContent += randomMessage.charAt(charIndex);
-    charIndex++;
-    setTimeout(typeLoaderText, 55);
+  function typeLoaderText() {
+    if (charIndex < randomMessage.length) {
+      loaderTextEl.textContent += randomMessage.charAt(charIndex);
+      charIndex++;
+      setTimeout(typeLoaderText, 55);
+    }
   }
-}
 
-// start typing
-typeLoaderText();
-
+  // start typing
+  typeLoaderText();
+});
 
 
 

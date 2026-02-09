@@ -554,6 +554,25 @@ footer {
   pointer-events: auto;
 }
 
+.modal-content .pinLock input{
+  font-size:2rem;
+  text-align:center;
+  letter-spacing:10px;
+  padding:10px;
+  width:150px;
+  border-radius:10px;
+  border:2px solid #ff4b5c;
+}
+
+.modal-content .pinLock #unlockBtn{
+  padding:10px 25px;
+  border:none;
+  background:#ff4b5c;
+  color:white;
+  border-radius:20px;
+  font-size:1rem;
+}
+
 .modal-content {
   height: 53rem;
   width: min(95vw, 900px);
@@ -571,6 +590,14 @@ footer {
   transform: scale(0.9);
   opacity: 0;
   transition: 0.3s ease;
+}
+
+.pinLock {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ margin-top: 4rem;
 }
 
 #modalText {
