@@ -48,11 +48,36 @@ body {
   transition: opacity 1s ease;
 }
 
-#loader p {
+/* #loader p {
   margin-top: 25px;
   font-size: 1.2rem;
   opacity: 0.9;
   font-family: 'Poppins', sans-serif;
+} */
+
+.loader-text{
+  margin-top:30px;
+  text-align:center;
+}
+
+/* Typing romantic subtitle */
+#loaderText{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(1.1rem,2.5vw,1.6rem);
+  margin-top:10px;
+  opacity:.95;
+  letter-spacing:.5px;
+}
+
+
+#loaderText::after {
+  content: "|";
+  margin-left: 6px;
+  animation: blinkLoader 1s infinite;
+}
+
+@keyframes blinkLoader {
+  50% { opacity: 0; }
 }
 
 .hidden {

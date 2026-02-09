@@ -421,6 +421,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+// ================== LOADER TYPING EFFECT ==================
+const loaderMessages = [
+  "Preparing our little love story… 💖",
+  "Gathering our sweetest memories… 🌸",
+  "Adding a sprinkle of magic… ✨",
+  "Almost ready for you… 💕"
+];
+
+const loaderTextEl = document.getElementById("loaderText");
+
+// 💖 pick ONE random message per page load
+const randomMessage =
+  loaderMessages[Math.floor(Math.random() * loaderMessages.length)];
+
+let charIndex = 0;
+
+function typeLoaderText() {
+  if (charIndex < randomMessage.length) {
+    loaderTextEl.textContent += randomMessage.charAt(charIndex);
+    charIndex++;
+    setTimeout(typeLoaderText, 55);
+  }
+}
+
+// start typing
+typeLoaderText();
+
+
+
+
 setTimeout(() => {
   const loader = document.getElementById("loader");
   loader.style.opacity = 0;
