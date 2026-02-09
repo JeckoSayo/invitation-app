@@ -1,3 +1,19 @@
+/* 🚨 Prevent AOS from hiding page while loader is visible */
+body.loading [data-aos] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* AOS active only after loader finishes */
+body:not(.loading) [data-aos] {
+  opacity: 0;
+  transition-property: transform, opacity;
+}
+
+body:not(.loading) [data-aos].aos-animate {
+  opacity: 1;
+}
+
 :root {
   --pink: #ff4b5c;
   --bg1: #ff758c;
@@ -108,15 +124,6 @@ body {
 #hero {
   text-align: left;
 }
-
-
-/* Right photo section */
-/* .hero-photo {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
 
 .photo-wrap {
   position: relative;

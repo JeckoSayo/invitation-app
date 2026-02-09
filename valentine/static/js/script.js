@@ -45,10 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
     el.invitation.classList.add("unlocked");
     el.hero.classList.add("fade-out");
 
-    // 🔥 IMPORTANT: wait for layout to stabilize, then init ScrollReveal
     setTimeout(() => {
-      initScrollReveal();
-    }, 300);
+      AOS.refreshHard();
+    }, 200);
   }
 
   function scrollToInvitation() {
@@ -210,15 +209,6 @@ document.addEventListener("DOMContentLoaded", function () {
   //     closeEnvelope();
   //   }
   // });
-
-  // ================== LOADER ==================
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      const loader = document.getElementById("loader");
-      loader.style.opacity = 0;
-      setTimeout(() => loader.remove(), 1000);
-    }, 3000);
-  });
 
   // ================== MEMORY ACTIVE STATE ==================
   const memories = document.querySelectorAll('.memory');
@@ -391,62 +381,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-
-  // ================== SCROLLREVEAL (DELAYED INIT) ==================
-  function initScrollReveal() {
-
-  const isMobile = window.innerWidth <= 768;
-
-  const sr = ScrollReveal({
-    reset: !isMobile,
-    distance: '60px',
-    duration: 2500,
-    delay: 100,
-    easing: 'ease-out'
-  });
-
-  sr.clean(
-    '#hero, .photo-wrap, .love-timer h2, .timer-card, .timer-caption, .memories-title, .memory'
-  );
-
-  sr.reveal('#hero', {
-    delay: 500,
-    origin: 'left'
-  });
-
-  sr.reveal('.photo-wrap', {
-    delay: 600,
-    origin: 'right'
-  });
-
-  sr.reveal('.love-timer h2', {
-    origin: 'top',
-    delay: 200
-  });
-
-  sr.reveal('.timer-card, .love-photo', {
-    origin: 'bottom',
-    delay: 400,
-    distance: '40px'
-  });
-
-  sr.reveal('.timer-caption', {
-    origin: 'bottom',
-    delay: 600,
-    distance: '20px'
-  });
-
-  sr.reveal('.memories-title', {
-    origin: 'top'
-  });
-
-  sr.reveal('.memory', {
-    origin: 'bottom',
-    interval: 300
-  });
-}
-
-
   // ================== SAFETY SYNC ==================
   window.addEventListener('resize', () => {
     if (window.ScrollReveal) ScrollReveal().sync();
@@ -486,3 +420,22 @@ document.addEventListener("DOMContentLoaded", function () {
   setInterval(updateLoveTimer, 1000 * 60 * 60 * 24);
 
 });
+
+setTimeout(() => {
+  const loader = document.getElementById("loader");
+  loader.style.opacity = 0;
+
+  setTimeout(() => {
+    loader.remove();
+
+    AOS.init({
+      once: false,
+      duration: 1200,
+      easing: "ease-out-cubic",
+      offset: 120
+    });
+
+    AOS.refresh();
+  }, 1000);
+
+}, 3000);
