@@ -141,6 +141,46 @@ body {
   box-shadow: 0 0 20px rgba(255,75,92,.8);
 }
 
+/* 💘 CUPID CHARACTER */
+#letter-section .wrapper {
+  position: relative;
+}
+
+/* Cupid placement */
+#cupid {
+  position: absolute;
+  width: 137px;
+  right: -14px;
+  top: 43px;
+  z-index: 5;
+  pointer-events: none;
+  transform: rotate(-6deg);
+  animation: cupidFloat 3.5s ease-in-out infinite;
+}
+
+/* Floating animation */
+@keyframes cupidFloat {
+  0%   { transform: translateY(0px) rotate(-6deg); }
+  50%  { transform: translateY(-12px) rotate(-3deg); }
+  100% { transform: translateY(0px) rotate(-6deg); }
+}
+
+@media (max-width: 768px) {
+  #cupid {
+    right: 19%;
+    top: 42px;
+    width: 130px;
+    transform: translateX(50%) rotate(-6deg);
+  }
+
+  @keyframes cupidFloat {
+    0%   { transform: translateX(50%) translateY(0px) rotate(-6deg); }
+    50%  { transform: translateX(50%) translateY(-10px) rotate(-3deg); }
+    100% { transform: translateX(50%) translateY(0px) rotate(-6deg); }
+  }
+}
+
+
 /* ===== HERO LAYOUT ===== */
 .hero-wrapper {
   display: grid;
