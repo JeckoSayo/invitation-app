@@ -1,3 +1,11 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+
 /* 🚨 Prevent AOS from hiding page while loader is visible */
 body.loading [data-aos] {
   opacity: 1 !important;
@@ -39,6 +47,7 @@ body {
 #loader {
   position: fixed;
   inset: 0;
+  width: 100vw;
   height: 100dvh;
   background: linear-gradient(180deg, #ff758c, #ff7eb3);
   display: flex;
@@ -47,7 +56,9 @@ body {
   align-items: center;
   z-index: 9999;
   transition: opacity 1s ease;
+  overflow: hidden;
 }
+
 
 .loader-text{
   margin-top:50px;
